@@ -5,6 +5,9 @@ This project involves a deep-dive analysis of a comprehensive Spotify Dataset us
 ## Overview
 This project involves a comprehensive analysis of a Spotify dataset containing various attributes about tracks, albums, and artists. Using PostgreSQL, the project transitions from basic data exploration and cleaning to advanced queries that analyze audio features (like energy and liveness) and compare streaming performance across platforms (Spotify vs. YouTube).
 
+## Dataset: ()
+
+
 ## Schema 
 ```sql
 -- create table
@@ -37,36 +40,6 @@ CREATE TABLE spotify (
 );
 ```
 
--- Spotify_Database_Analysis --
-
--- create table
-DROP TABLE IF EXISTS Spotify;
-CREATE TABLE Spotify (
-    artist VARCHAR(255),
-    track VARCHAR(255),
-    album VARCHAR(255),
-    album_type VARCHAR(50),
-    danceability FLOAT,
-    energy FLOAT,
-    loudness FLOAT,
-    speechiness FLOAT,
-    acousticness FLOAT,
-    instrumentalness FLOAT,
-    liveness FLOAT,
-    valence FLOAT,
-    tempo FLOAT,
-    duration_min FLOAT,
-    title VARCHAR(255),
-    channel VARCHAR(255),
-    views FLOAT,
-    likes BIGINT,
-    comments BIGINT,
-    licensed BOOLEAN,
-    official_video BOOLEAN,
-    stream BIGINT,
-    energy_liveness FLOAT,
-    most_played_on VARCHAR(50)
-);
 
 ```sql
 *Some Basic Queries*
@@ -87,7 +60,7 @@ select distinct most_played_on from Spotify;
 select distinct channel from Spotify;
 ```
 
-## Problems ??
+## Problems ??  & Solutions Queries
 
 -- 1. Retrieve the names of all tracks that have more than 1 billion streams.
 
@@ -206,3 +179,43 @@ highest_energy - lowest_energy as energy_difference
 from difference
 order by 2 desc
 ```
+
+-- 14. Find tracks where the energy-to-liveness ratio is greater than 1.2..
+```sql
+SELECT 
+    track, 
+    artist, 
+    energy, 
+    liveness, 
+    energy_liveness
+FROM spotify
+WHERE energy_liveness > 1.2;
+```
+-- 15. Calculate the cumulative sum of likes for tracks 
+-- ordered by the number of views, using window functions.
+```sql
+SELECT 
+    track,
+    views,
+    likes,
+    SUM(likes) OVER (ORDER BY views desc) AS cumulative_likes
+FROM spotify
+ORDER BY views desc;
+```
+
+## Key Insights
+
+1. Platform-Specific Dominance: The analysis revealed a significant subset of tracks where YouTube views far exceed Spotify streams, particularly for artists with high-production music videos. This highlights how visual content can drive discovery more effectively than audio alone for certain genres.
+
+2. Engagement Dynamics: Licensed content and tracks with official music videos show a disproportionately higher number of likes and comments compared to unofficial uploads. This suggests that "Official" status is a key driver for community engagement and algorithm prioritization.
+
+3. Audio Feature Correlation: By calculating the energy-to-liveness ratio, we identified that high-energy tracks are not always "live" in feel. Most top-streamed tracks maintain a high energy level while keeping a low liveness score, indicating a preference for polished, high-production studio sounds in mainstream hits.
+
+4. Artist Consistency: Using window functions to rank tracks by artist showed that top-tier artists tend to have a "Power Law" distribution—where their top 3 tracks account for the vast majority of their total views, while their remaining library serves as a "Long Tail".
+
+5. Cumulative Growth Patterns: The cumulative sum of likes ordered by views demonstrates that engagement does not always scale linearly with popularity; some "niche" tracks with fewer views have much higher "Like-to-View" ratios than viral hits.
+
+## Conclusion
+This project successfully demonstrates the power of SQL as a tool for business intelligence and data auditing. Through the systematic exploration of the Spotify dataset, I moved beyond simple data retrieval to perform advanced analytical tasks, including platform comparison, statistical benchmarking, and performance ranking.
+
+The technical execution—ranging from Data Cleaning (removing zero-duration tracks) to Advanced Querying (Window Functions and CTEs)—highlights a robust ability to handle real-world datasets that are often messy and multi-dimensional. Ultimately, these insights provide a clear picture of how audio characteristics and platform-specific metadata influence a track's success in the modern digital streaming landscape.
