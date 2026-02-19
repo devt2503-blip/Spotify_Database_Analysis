@@ -219,3 +219,24 @@ ORDER BY views desc;
 This project successfully demonstrates the power of SQL as a tool for business intelligence and data auditing. Through the systematic exploration of the Spotify dataset, I moved beyond simple data retrieval to perform advanced analytical tasks, including platform comparison, statistical benchmarking, and performance ranking.
 
 The technical execution—ranging from Data Cleaning (removing zero-duration tracks) to Advanced Querying (Window Functions and CTEs)—highlights a robust ability to handle real-world datasets that are often messy and multi-dimensional. Ultimately, these insights provide a clear picture of how audio characteristics and platform-specific metadata influence a track's success in the modern digital streaming landscape.
+
+
+## Query Optimisation using index
+```sql
+EXPLAIN ANALYZE               --ET; 11.85 ms, PT:0.642 ms
+select artist, track, views 
+from Spotify 
+where artist = 'Gorillaz'
+and 
+most_played_on = 'Youtube'
+order by stream desc limit 25;
+```
+
+![Execution_time_before_index]()
+
+![Execution_time_after_index]()
+
+## Graphical Representation
+![Graph_Analysis]()
+
+
