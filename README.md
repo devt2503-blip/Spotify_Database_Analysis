@@ -239,4 +239,4 @@ order by stream desc limit 25;
 ## Graphical Representation
 ![Graph_Analysis]()
 
-![BITMAPS]()
+![BITMAPS](https://github.com/devt2503-blip/Spotify_Database_Analysis/blob/main/BITMAPS.png)
