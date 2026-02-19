@@ -232,12 +232,15 @@ most_played_on = 'Youtube'
 order by stream desc limit 25;
 ```
 
+## Execution_time_before_index
 ![Execution_time_before_index](https://github.com/devt2503-blip/Spotify_Database_Analysis/blob/main/Execution%20time%20before%20index.png
 )
 
+## Execution_time_after_index
 ![Execution_time_after_index](https://github.com/devt2503-blip/Spotify_Database_Analysis/blob/main/Execution%20time%20after%20index.png)
 
 ## Graphical Representation
 ![Graph_Analysis](https://github.com/devt2503-blip/Spotify_Database_Analysis/blob/main/Graphical%20Analysis.png)
 
+## BITMAPS
 ![BITMAPS](https://github.com/devt2503-blip/Spotify_Database_Analysis/blob/main/BITMAPS.png)
