@@ -5,7 +5,7 @@ This project involves a deep-dive analysis of a comprehensive Spotify Dataset us
 ## Overview
 This project involves a comprehensive analysis of a Spotify dataset containing various attributes about tracks, albums, and artists. Using PostgreSQL, the project transitions from basic data exploration and cleaning to advanced queries that analyze audio features (like energy and liveness) and compare streaming performance across platforms (Spotify vs. YouTube).
 
-## Dataset: ()
+## Dataset: (https://github.com/devt2503-blip/Spotify_Database_Analysis/blob/main/spotify_datset.csv)
 
 
 ## Schema 
