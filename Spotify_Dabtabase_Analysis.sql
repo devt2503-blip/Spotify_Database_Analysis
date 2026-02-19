@@ -161,4 +161,28 @@ group by 1
 select album, 
 highest_energy - lowest_energy as energy_difference
 from difference
+
 order by 2 desc
+
+-- 14. Find tracks where the energy-to-liveness ratio is greater than 1.2..
+
+SELECT 
+    track, 
+    artist, 
+    energy, 
+    liveness, 
+    energy_liveness
+FROM spotify
+WHERE energy_liveness > 1.2;
+
+-- 15. Calculate the cumulative sum of likes for tracks 
+-- ordered by the number of views, using window functions.
+
+SELECT 
+    track,
+    views,
+    likes,
+    SUM(likes) OVER (ORDER BY views desc) AS cumulative_likes
+FROM spotify
+ORDER BY views desc;
+
